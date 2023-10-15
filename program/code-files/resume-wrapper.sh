@@ -15,6 +15,10 @@ if [ ! -d ../${component_dir} ]; then
     exit 4
 fi
 
+if [ ! -d ../${output_dir} ]; then
+    mkdir ../${output_dir}
+fi
+
 if [ ! -f ../${component_dir}/${header_file} ]; then
     echo Please create the header file before executing the program >&2
     exit 5
