@@ -12,7 +12,7 @@ document_type=$3
 component_dir=../${resume_name}-components
 output_dir=../${resume_name}-output-files
 
-txt_file=${resume_name}.txt
+txt_file=resume-template.txt
 tex_file=../${output_dir}/${file_name}.tex
 header_file={component_dir}/${resume_name}-heading.tex
 
