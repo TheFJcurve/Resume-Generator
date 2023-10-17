@@ -14,7 +14,7 @@ if [ ! -d ../${resume_name} ]; then
 fi
 
 component_template=../cv-template
-component_dir=../${resume-name}/${resume_name}-components
+component_dir=../${resume_name}/${resume_name}-components
 output_dir=../${resume_name}/${resume_name}-output-files
 
 if [ ! -d ${component_dir} ]; then 
@@ -27,22 +27,30 @@ fi
 
 echo Create the Header File
 
-scp ${component_template}/heading.tex ${component_dir}/${resume_name}-heading.tex
-vim ${component_dir}/${resume_name}-heading.tex
+scp ${component_template}/heading.tex ${component_dir}/1-${resume_name}-heading.tex
+vim ${component_dir}/1-${resume_name}-heading.tex
+
+index=2
 
 while [ true ]; do 
     echo Select the component you wish to create
-    echo '(achievements, certificates, competitions, education, experience, interests, languages, projects, skills)'
+    echo '(achievements, certificates, competitions, education, experience, interests, languages, projects, skills, quit)'
 
     read component_to_add
 
-    if [ ! -f ${component_template}/${component_to_add} ]; then
+    if [ ${component_to_add} == 'quit' ] || [ ${component_to_add} == 'q' ]; then
+        break
+    fi
+
+    if [ ! -f ${component_template}/${component_to_add}.tex ]; then
         echo Please input a valid file name >&2
         exit 1
     fi
 
-    scp ${component_template}/${component_to_add}.tex ${component_dir}/${resume_name}-${component_to_add}.tex
-    vim ${component_dir}/${resume_name}-${component_to_add}.tex
+    scp ${component_template}/${component_to_add}.tex ${component_dir}/${index}-${resume_name}-${component_to_add}.tex
+    vim ${component_dir}/${index}-${resume_name}-${component_to_add}.tex
+
+    index=$((index + 1))
 done
 
-# ./resume-wrapper ${resume_name} ${font} ${document_type}
+./resume-wrapper.sh ${resume_name} ${font} ${document_type}

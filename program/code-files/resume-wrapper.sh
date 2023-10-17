@@ -9,12 +9,12 @@ resume_name=$1
 font_size=$2
 document_type=$3
 
-component_dir=../${resume_name}-components
-output_dir=../${resume_name}-output-files
+component_dir=../${resume_name}/${resume_name}-components
+output_dir=../${resume_name}/${resume_name}-output-files
 
 txt_file=resume-template.txt
-tex_file=../${output_dir}/${file_name}.tex
-header_file={component_dir}/${resume_name}-heading.tex
+tex_file=${output_dir}/${resume_name}.tex
+header_file=${component_dir}/1-${resume_name}-heading.tex
 
 if [ ! -d ${component_dir} ] || [ ! -f ${component_dir/*} ]; then
     echo Please create some components before executing the program >&2 
@@ -30,14 +30,10 @@ echo \\documentclass[${font_size}, ${document_type}]{article} > ${tex_file}
 
 cat ${txt_file} | head -n 8 | tail -n 7 >> ${tex_file}
 
-echo \\input{${header_file}} >> ${tex_file}
-
 for file in ${component_dir}/*; do
-    if [ ${file} != {header_file} ]; then
-        echo \\input{${file}} >> ${tex_file}
-    fi
+    echo \\input{$(realpath ${file})} >> ${tex_file}
 done
 
 cat ${txt_file} | tail -n 1 >> ${tex_file}
 
-pdflatex ${tex_file} > .
+pdflatex ${tex_file} -output-directory=${output_dir} &> ${output_dir}/output.log
