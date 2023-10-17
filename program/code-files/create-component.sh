@@ -25,10 +25,29 @@ if [ ! -d ${output_dir} ]; then
     mkdir ${output_dir}
 fi
 
-echo Create the Header File
+echo 'Do you wish to copy the header file from any other resume project (Y/N)'
 
-scp ${component_template}/heading.tex ${component_dir}/1-${resume_name}-heading.tex
-vim ${component_dir}/1-${resume_name}-heading.tex
+read response
+
+if [ ${response} == 'Y' ] || [ ${response} == 'y' ]; then 
+    echo 'Write the name of project to import from'
+    
+    for directory in ../*; do
+        if [ ${directory} == '../code-files' ] || [ ${directory} == '../cv-template' ] || [ ${directory} == ../${resume_name} ]; then
+            continue
+        fi
+        echo ${directory}
+    done
+
+    read response 
+
+    scp ../${response}/${response}-components/1-${response}-heading.tex ${component_dir}/1-${resume_name}-heading.tex
+    vim ${component_dir}/1-${resume_name}-heading.tex
+else
+    echo Create the Header File
+    scp ${component_template}/heading.tex ${component_dir}/1-${resume_name}-heading.tex
+    vim ${component_dir}/1-${resume_name}-heading.tex
+fi
 
 index=2
 
