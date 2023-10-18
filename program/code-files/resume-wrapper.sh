@@ -14,7 +14,8 @@ output_dir=../${resume_name}/${resume_name}-output-files
 
 txt_file=resume-template.txt
 tex_file=${output_dir}/${resume_name}.tex
-header_file=${component_dir}/1-${resume_name}-heading.tex
+header_file=${component_dir}/${resume_name}-heading.tex
+component_order=${output_dir}/component-order.txt
 
 if [ ! -d ${component_dir} ] || [ ! -f ${component_dir/*} ]; then
     echo Please create some components before executing the program >&2 
@@ -30,8 +31,8 @@ echo \\documentclass[${font_size}, ${document_type}]{article} > ${tex_file}
 
 cat ${txt_file} | head -n 8 | tail -n 7 >> ${tex_file}
 
-for file in ${component_dir}/*; do
-    echo \\input{$(realpath ${file})} >> ${tex_file}
+for file in $(cat ${component_order}); do
+    echo \\input{$(realpath ${component_dir}/${file})} >> ${tex_file}
 done
 
 cat ${txt_file} | tail -n 1 >> ${tex_file}

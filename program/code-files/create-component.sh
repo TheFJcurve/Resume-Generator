@@ -23,6 +23,8 @@ fi
 
 if [ ! -d ${output_dir} ]; then 
     mkdir ${output_dir}
+else
+    rm ${output_dir}/component-order.txt
 fi
 
 echo 'Do you wish to copy the header file from any other resume project (Y/N)'
@@ -41,15 +43,19 @@ if [ ${response} == 'Y' ] || [ ${response} == 'y' ]; then
 
     read response 
 
-    scp ../${response}/${response}-components/1-${response}-heading.tex ${component_dir}/1-${resume_name}-heading.tex
-    vim ${component_dir}/1-${resume_name}-heading.tex
+    scp ../${response}/${response}-components/${response}-heading.tex ${component_dir}/${resume_name}-heading.tex
+    vim ${component_dir}/${resume_name}-heading.tex
+
+
+    echo ${resume_name}-heading.tex >> ${output_dir}/component-order.txt
 else
     echo Create the Header File
-    scp ${component_template}/heading.tex ${component_dir}/1-${resume_name}-heading.tex
-    vim ${component_dir}/1-${resume_name}-heading.tex
-fi
+    scp ${component_template}/heading.tex ${component_dir}/${resume_name}-heading.tex
+    vim ${component_dir}/${resume_name}-heading.tex
 
-index=2
+
+    echo ${resume_name}-heading.tex >> ${output_dir}/component-order.txt
+fi
 
 while [ true ]; do 
     echo Select the component you wish to create
@@ -66,10 +72,36 @@ while [ true ]; do
         exit 1
     fi
 
-    scp ${component_template}/${component_to_add}.tex ${component_dir}/${index}-${resume_name}-${component_to_add}.tex
-    vim ${component_dir}/${index}-${resume_name}-${component_to_add}.tex
+    echo Do you wish to copy the ${component_to_add} file from any other resume project '(Y/N)'
 
-    index=$((index + 1))
+    read response
+
+    if [ ${response} == 'Y' ] || [ ${response} == 'y' ]; then 
+        echo 'Write the name of project to import from'
+        
+        for directory in ../*; do
+            if [ ${directory} == '../code-files' ] || [ ${directory} == '../cv-template' ] || [ ${directory} == ../${resume_name} ]; then
+                continue
+            fi
+            echo ${directory}
+        done
+
+        read response 
+
+        scp ../${response}/${response}-components/${response}-${component_to_add}.tex ${component_dir}/${resume_name}-${component_to_add}.tex
+        vim ${component_dir}/${resume_name}-${component_to_add}.tex
+
+
+        echo ${resume_name}-${component_to_add}.tex >> ${output_dir}/component-order.txt
+    else
+        echo Create the ${component_to_add} File
+        scp ${component_template}/${component_to_add}.tex ${component_dir}/${resume_name}-${component_to_add}.tex
+        vim ${component_dir}/${resume_name}-${component_to_add}.tex
+
+
+        echo ${resume_name}-${component_to_add}.tex >> ${output_dir}/component-order.txt
+    fi
+
 done
 
 ./resume-wrapper.sh ${resume_name} ${font} ${document_type}
