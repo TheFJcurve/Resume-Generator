@@ -37,4 +37,4 @@ done
 
 cat ${txt_file} | tail -n 1 >> ${tex_file}
 
-pdflatex ${tex_file} -output-directory= ${output_dir} &> ${output_dir}/output.log
+pdflatex ${tex_file} '-output-directory='${output_dir} &> ${output_dir}/output.log
