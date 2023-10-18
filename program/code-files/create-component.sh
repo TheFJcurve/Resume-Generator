@@ -1,31 +1,20 @@
 #!/bin/bash
 
-if [ $# -ne 3 ]; then 
-    echo Please pass EXACTLY 3 arguments >&2 
-    exit 3
+if [ $# -ne 10 ]; then 
+    echo Please pass EXACTLY 10 arguments >&2 
+    exit 2
 fi
 
 resume_name=$1
 font=$2
-document_type=$3
-
-if [ ! -d ../${resume_name} ]; then 
-    mkdir ../${resume_name}
-fi
-
-component_template=../cv-template
-component_dir=../${resume_name}/${resume_name}-components
-output_dir=../${resume_name}/${resume_name}-output-files
-
-if [ ! -d ${component_dir} ]; then 
-    mkdir ${component_dir}
-fi
-
-if [ ! -d ${output_dir} ]; then 
-    mkdir ${output_dir}
-else
-    rm ${output_dir}/component-order.txt
-fi
+document_type=$3 
+component_template=$4 
+component_dir=$5 
+output_dir=$6
+txt_file=$7 
+tex_file=$8
+header_file=$9 
+component_order=${10}
 
 echo 'Do you wish to copy the header file from any other resume project (Y/N)'
 
@@ -104,4 +93,4 @@ while [ true ]; do
 
 done
 
-./resume-wrapper.sh ${resume_name} ${font} ${document_type}
+./resume-wrapper.sh ${resume_name} ${font} ${document_type} ${component_dir} ${output_dir} ${txt_file} ${tex_file} ${header_file} ${component_order}

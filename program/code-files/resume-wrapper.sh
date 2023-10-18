@@ -1,21 +1,19 @@
 #!/bin/bash
 
-if [ $# -ne 3 ]; then 
-    echo Please pass EXACTLY 3 arguments >&2 
+if [ $# -ne 9 ]; then 
+    echo Please pass EXACTLY 9 arguments >&2 
     exit 3
 fi
 
 resume_name=$1
-font_size=$2
-document_type=$3
-
-component_dir=../${resume_name}/${resume_name}-components
-output_dir=../${resume_name}/${resume_name}-output-files
-
-txt_file=resume-template.txt
-tex_file=${output_dir}/${resume_name}.tex
-header_file=${component_dir}/${resume_name}-heading.tex
-component_order=${output_dir}/component-order.txt
+font=$2
+document_type=$3 
+component_dir=$4
+output_dir=$5
+txt_file=$6
+tex_file=$7
+header_file=$8 
+component_order=$9
 
 if [ ! -d ${component_dir} ] || [ ! -f ${component_dir/*} ]; then
     echo Please create some components before executing the program >&2 
