@@ -45,10 +45,32 @@ if [ ${operation} == "create" ]; then
 
     ./create-component.sh ${resume_name} ${font} ${document_type} ${component_template} ${component_dir} ${output_dir} ${txt_file} ${tex_file} ${header_file} ${component_order}
 elif [ ${operation} == "update" ]; then
+    if [ ! -d ${resume_dir} ]; then 
+        echo Enter a Resume Directory that already exists
+        exit 2
+    fi
+
     ./update-component.sh ${resume_name} ${font} ${document_type} ${component_dir} ${output_dir} ${txt_file} ${tex_file} ${header_file} ${component_order}
 elif [ ${operation} == "delete" ]; then
+    if [ ! -d ${resume_dir} ]; then 
+        echo Enter a Resume Directory that already exists
+        exit 2
+    fi
+    
     ./delete-component.sh ${resume_name} ${font} ${document_type} ${component_dir} ${output_dir} ${txt_file} ${tex_file} ${header_file} ${component_order}
+elif [ ${operation} == "drop_resume" ]; then
+    if [ ! -d ${resume_dir} ]; then 
+        echo Enter a Resume Directory that already exists
+        exit 2
+    fi
+
+    echo Are you sure you wish to delete this folder '(Y/N)'?
+    read response
+    if [ ${response} == 'y' ] || [ ${response} == 'Y' ]; then
+        rm -r ${resume_dir}
+    fi 
+
 else 
     echo Enter a valid operation
-    exit 2
+    exit 3
 fi

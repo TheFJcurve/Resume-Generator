@@ -2,7 +2,7 @@
 
 if [ $# -ne 10 ]; then 
     echo Please pass EXACTLY 10 arguments >&2 
-    exit 2
+    exit 4
 fi
 
 resume_name=$1
@@ -58,7 +58,7 @@ while [ true ]; do
 
     if [ ! -f ${component_template}/${component_to_add}.tex ]; then
         echo Please input a valid file name >&2
-        exit 3
+        exit 5
     fi
 
     echo Do you wish to copy the ${component_to_add} file from any other resume project '(Y/N)'
