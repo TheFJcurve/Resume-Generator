@@ -27,4 +27,15 @@ resumes subfolder, [resume-name].
 
 DELETE
 
-Start by executing the command '/execute.sh delete [resume-name]'. This will delete one component from the [resume-name] components
+Start by executing the command '/execute.sh delete [resume-name]'. This will delete one component from the [resume-name].
+
+1. Existing components will be listed for you, select the one that you would like to delete.
+2. Once you delete the component, the changes will be automatically updated in the pdf file.
+
+DROP_RESUME
+
+Start by executing the command './execute.sh drop_resume [resume-name]'.
+
+WARNING: This function is extremely dangerous if you don't know what you are doing.
+
+This will delete the whole resume directory with the name [resume-name], and all the components in it.
