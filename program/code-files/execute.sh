@@ -36,4 +36,9 @@ if [ ${operation} == "create" ]; then
     ./create-component.sh ${resume_name} ${font} ${document_type} ${component_template} ${component_dir} ${output_dir} ${txt_file} ${tex_file} ${header_file} ${component_order}
 elif [ ${operation} == "update" ]; then
     ./update-component.sh ${resume_name} ${font} ${document_type} ${component_dir} ${output_dir} ${txt_file} ${tex_file} ${header_file} ${component_order}
+elif [ ${operation} == "delete" ]; then
+    ./delete-component.sh ${resume_name} ${font} ${document_type} ${component_dir} ${output_dir} ${txt_file} ${tex_file} ${header_file} ${component_order}
+else 
+    echo Enter a valid operation
+    exit 2
 fi

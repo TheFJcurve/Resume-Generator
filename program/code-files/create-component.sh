@@ -58,7 +58,7 @@ while [ true ]; do
 
     if [ ! -f ${component_template}/${component_to_add}.tex ]; then
         echo Please input a valid file name >&2
-        exit 1
+        exit 3
     fi
 
     echo Do you wish to copy the ${component_to_add} file from any other resume project '(Y/N)'
