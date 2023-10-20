@@ -1,3 +1,4 @@
 software-developer-heading.tex
 software-developer-projects.tex
 software-developer-education.tex
+software-developer-skills.tex
