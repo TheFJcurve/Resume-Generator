@@ -1,26 +1,36 @@
 #!/bin/bash
 
-if [ $# -ne 4 ]; then 
-    echo Please pass EXACTLY 4 arguments >&2 
+if [ $# -lt 2 ]; then 
+    echo Please pass ATLEAST 2 arguments >&2 
     exit 1
 fi
 
 operation=$1
 resume_name=$2
-font=$3
-document_type=$4
+
+if [ $# -lt 4 ]; then
+    document_type=letterpaper
+    if [ $# -lt 3 ]; then 
+        font=11pt
+    else
+        font=$3
+    fi
+else
+    document_type=$4
+fi
 
 component_template=../cv-template
-component_dir=../${resume_name}/${resume_name}-components
-output_dir=../${resume_name}/${resume_name}-output-files
+resume_dir=../resumes/${resume_name}
+component_dir=${resume_dir}/${resume_name}-components
+output_dir=${resume_dir}/${resume_name}-output-files
 txt_file=resume-template.txt
 tex_file=${output_dir}/${resume_name}.tex
 header_file=${component_dir}/${resume_name}-heading.tex
 component_order=${output_dir}/component-order.txt
 
 if [ ${operation} == "create" ]; then
-    if [ ! -d ../${resume_name} ]; then 
-        mkdir ../${resume_name}
+    if [ ! -d ${resume_dir} ]; then 
+        mkdir ${resume_dir}
     fi
 
     if [ ! -d ${component_dir} ]; then 
