@@ -13,12 +13,12 @@ component_order=$9
 echo Which file to edit?
 
 for file in ${component_dir}/*; do
-    echo ${file}
+    echo $(basename ${file})
 done
 
 read file_name
 
-file_to_edit=${component_dir}/${resume_name}-${file_name}.tex
+file_to_edit=${component_dir}/${file_name}
 
 vim ${file_to_edit}
 

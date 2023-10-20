@@ -22,14 +22,14 @@ UPDATE
 Start by executing the command './execute.sh update [resume-name] [font-size] (OPTIONAL) [document-type] (OPTIONAL)'. This will edit one component file in the
 resumes subfolder, [resume-name].
 
-1. Existing components will be listed for you, select the one you would like to edit.
+1. Existing components will be listed for you, select the one you would like to edit (WITH the .tex extension).
 2. Once you edit the file, save it, the changes will be automatically updated in the pdf file.
 
 DELETE
 
 Start by executing the command '/execute.sh delete [resume-name]'. This will delete one component from the [resume-name].
 
-1. Existing components will be listed for you, select the one that you would like to delete.
+1. Existing components will be listed for you, select the one that you would like to delete (WITH the .tex extension).
 2. Once you delete the component, the changes will be automatically updated in the pdf file.
 
 DROP_RESUME

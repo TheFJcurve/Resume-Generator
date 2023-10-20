@@ -13,15 +13,15 @@ component_order=$9
 echo Which file to delete?
 
 for file in ${component_dir}/*; do
-    echo ${file}
+    echo $(basename ${file})
 done
 
 read file_name
 
-file_to_edit=${component_dir}/${resume_name}-${file_name}.tex
+file_to_delete=${component_dir}/${file_name}
 
-rm ${file_to_edit}
+rm ${file_to_delete}
 
-sed -i "/${resume_name}-${file_name}.tex/d" ${component_order}
+sed -i "/${file_name}/d" ${component_order}
 
 ./resume-wrapper.sh ${resume_name} ${font} ${document_type} ${component_dir} ${output_dir} ${txt_file} ${tex_file} ${header_file} ${component_order}

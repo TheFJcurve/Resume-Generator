@@ -39,8 +39,6 @@ if [ ${operation} == "create" ]; then
 
     if [ ! -d ${output_dir} ]; then 
         mkdir ${output_dir}
-    else
-        rm ${output_dir}/component-order.txt
     fi
 
     ./create-component.sh ${resume_name} ${font} ${document_type} ${component_template} ${component_dir} ${output_dir} ${txt_file} ${tex_file} ${header_file} ${component_order}

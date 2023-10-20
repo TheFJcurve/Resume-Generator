@@ -23,11 +23,11 @@ read response
 if [ ${response} == 'Y' ] || [ ${response} == 'y' ]; then 
     echo 'Write the name of project to import from'
     
-    for directory in ../*; do
-        if [ ${directory} == '../code-files' ] || [ ${directory} == '../cv-template' ] || [ ${directory} == ../${resume_name} ]; then
+    for directory in ../resumes/*; do
+        if [ $(basename ${directory}) == ${resume_name} ]; then
             continue
         fi
-        echo ${directory}
+        echo $(basename ${directory})
     done
 
     read response 
@@ -36,14 +36,14 @@ if [ ${response} == 'Y' ] || [ ${response} == 'y' ]; then
     vim ${component_dir}/${resume_name}-heading.tex
 
 
-    echo ${resume_name}-heading.tex >> ${output_dir}/component-order.txt
+    echo ${resume_name}-heading.tex > ${output_dir}/component-order.txt
 else
     echo Create the Header File
     scp ${component_template}/heading.tex ${component_dir}/${resume_name}-heading.tex
     vim ${component_dir}/${resume_name}-heading.tex
 
 
-    echo ${resume_name}-heading.tex >> ${output_dir}/component-order.txt
+    echo ${resume_name}-heading.tex > ${output_dir}/component-order.txt
 fi
 
 while [ true ]; do 
@@ -69,10 +69,10 @@ while [ true ]; do
         echo 'Write the name of project to import from'
         
         for directory in ../*; do
-            if [ ${directory} == '../code-files' ] || [ ${directory} == '../cv-template' ] || [ ${directory} == ../${resume_name} ]; then
+            if [ $(basename ${directory}) == ${resume_name} ]; then
                 continue
             fi
-            echo ${directory}
+            echo $(basename ${directory})
         done
 
         read response 
