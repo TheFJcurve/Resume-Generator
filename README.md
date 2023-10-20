@@ -6,6 +6,8 @@ cd program/code-files
 
 ./execute.sh [create|update|delete|drop_resume] [resume-name] [font-size] (OPTIONAL) [document-type] (OPTIONAL)
 
+Note: If running ./execute.sh script says permission denied, run 'chmod a+x \*'
+
 CREATE
 
 Start by executing the command './execute.sh create [resume-name] [font-size] (OPTIONAL) [document-type] (OPTIONAL)'. This will create a subfolder

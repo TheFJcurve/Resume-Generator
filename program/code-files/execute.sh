@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## ./execute (one of create, update, delete, drop_table) (resume-name) (font-size) (document-type)
+## ./execute.sh (one of create, update, delete, drop_table) (resume-name) (font-size) (document-type)
 
 ## Required Arguments: Operation & ResumeName
 ## Optional Arguments: FontSize & DocumentType 
