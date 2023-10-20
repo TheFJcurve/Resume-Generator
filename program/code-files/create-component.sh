@@ -15,7 +15,7 @@
 ## already worked on. 
 
 ## ERRORS
-## exit 4 -> Exactly 10 were not passed to ./create-component.sh
+## exit 4 -> Exactly 10 commands were not passed to ./create-component.sh
 ## exit 5 -> Invalid directory name provided to input_file function response
 ## exit 6 -> Invalid component name provided to add to file
 
