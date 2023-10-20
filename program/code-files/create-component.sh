@@ -1,7 +1,7 @@
 #!/bin/bash
 
-## ./create-component.sh (resume-name) (font-size) (document-type) (component-directory) (output-directory) (text-file) 
-##                      (.tex-file) (header-file) (component-order)
+## ./create-component.sh (resume-name) (font-size) (document-type) (component-template-directory) (component-directory) 
+##                       (output-directory) (text-file) (.tex-file) (header-file) (component-order)
 
 ## Required Arguments: All the arguments are required.
 
