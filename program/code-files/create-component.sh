@@ -54,8 +54,7 @@ create_file () {
 
     echo Create the ${component_to_add} File
 
-    scp ${component_template}/${component_to_add}.tex ${component_dir}/${resume_name}-${component_to_add}.tex
-    vim ${component_dir}/${resume_name}-${component_to_add}.tex
+    ./component-in-LaTeX.sh ${resume_name} ${component_dir} ${component_to_add}
 
     echo ${resume_name}-${component_to_add}.tex >> ${component_order}
 }
