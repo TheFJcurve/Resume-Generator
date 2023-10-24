@@ -1,5 +1,27 @@
 #!/bin/bash
 
+## ./component-in-LaTeX.sh (resume-name) (component-directory) (component-name-to-create)
+
+## Required Arguments: All the arguments are required.
+
+## Given a component to create, this function calls functions that create LaTeX code for the component
+## accepts arguments to personalize the resume with ease.
+
+## The functions it can run are as follows:
+## achievements()
+## certificates()
+## competitions()
+## education()
+## experience()
+## heading()
+## interests()
+## languages()
+## projects()
+## skills()
+
+## SIDE EFFECTS
+## Adds a file to ../resumes/${resume_name}/${resume_name}-components/${resume_name}-${component_name}.tex
+
 achievements() {
     echo 'Competition Name: '
     read competition
