@@ -1,2 +1,0 @@
-data-science-heading.tex
-data-science-projects.tex
