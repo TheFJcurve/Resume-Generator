@@ -125,7 +125,7 @@ education() {
         read relcourses
 
 
-        output='\\textbf{'${name}'} \\hfill {'${grad}'} \\\ \n
+        output+='\\textbf{'${name}'} \\hfill {'${grad}'} \\\ \n
                 '${program}' \\\ \n
                 {Relavent Courses} - {'${relcourses}'} \\\'
     done    
@@ -156,7 +156,7 @@ experience() {
         echo 'Job Description: '
         read desc
 
-        output='
+        output+='
                 {\\textbf{'${name}'}, \\textnormal{\\textit{'${position}'} | '${location}'}} \\hfill {'${sdate}' - '${edate}'} \n
                 {\\begin{itemize} \n
                         \\item {'${desc}'} \n
@@ -195,18 +195,26 @@ heading() {
 }
 
 interests() {
-    echo 'Interest: '
-    read name
-    echo 'Brief Description: '
-    read desc
-
+    echo 'How many interests would you like to add? '
+    read count 
     output='\\textbf{Interests} \n
 
             \\par\\noindent\\rule{\\textwidth}{0.2pt} \n
 
-            \\begin{itemize} \n
-                \\item {'${name}' - '${desc}'} \n
-            \\end{itemize}'
+            \\begin{itemize} \n'
+
+
+    for ((i=1; i<=${count}; i++)); do
+        echo 'Interest' ${i}
+        echo ''
+        echo 'Interest: '
+        read name
+        echo 'Brief Description: '
+        read desc
+        output+='\\item {'${name}' - '${desc}'} \n'
+    done
+    
+    output+='\\end{itemize}'
 }
 
 languages() {
@@ -229,11 +237,11 @@ languages() {
         output+='\\item {'${name}': '${proficiency}'} \n'
     done
 
-    output+='\\end{itemize}''
+    output+='\\end{itemize}'
 }
 
 projects () {
-    echo 'How many projects would you like to include? '
+    echo 'How many projects would you like to include?'
     read count
 
     output='\\textbf{Projects} \n
