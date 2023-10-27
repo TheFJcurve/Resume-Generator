@@ -293,7 +293,7 @@ skills() {
         echo 'List of Skills: '
         read skills
         output+='\\noindent \n
-                {\\textbf{'${category}'} : {'${skills}'}} \n'
+                {\\textbf{'${category}'} : {'${skills}'}} \\\ \n'
     done
 }
 
