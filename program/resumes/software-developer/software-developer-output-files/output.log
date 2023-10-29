@@ -58,20 +58,35 @@ bject-oriented-resume-generator/program/resumes/software-developer/software-dev
 eloper-components/software-developer-heading.tex
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/sc' undefined
-(Font)              using `OT1/cmr/bx/n' instead on input line 5.
+(Font)              using `OT1/cmr/bx/n' instead on input line 2.
 
 (/usr/local/texlive/2023/texmf-dist/tex/latex/fontawesome/ufontawesometwo.fd)
 (/usr/local/texlive/2023/texmf-dist/tex/latex/fontawesome/ufontawesomeone.fd))
 (/Users/sargunsinghbhatti/Documents/Documents - Sargun’s MacBook Air/GitHub/o
 bject-oriented-resume-generator/program/resumes/software-developer/software-dev
-eloper-components/software-developer-achievements.tex
+eloper-components/software-developer-projects.tex) [1{/usr/local/texlive/2023/t
+exmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2023/texmf-dist
+/fonts/enc/dvips/fontawesome/fontawesometwo.enc}{/usr/local/texlive/2023/texmf-
+dist/fonts/enc/dvips/fontawesome/fontawesomeone.enc}{/usr/local/texlive/2023/te
+xmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+(../resumes/software-developer/software-developer-output-files/software-develop
+er.aux)
 
-! LaTeX Error: There's no line here to end.
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.8 {
-     } \hfill % Achievement Location
-? 
+
+Package rerunfilecheck Warning: File `software-developer.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )</usr/local/texlive/2023/texmf-dist/fonts/type1/public/fontawesome/FontAwesom
+e.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10
+.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.
+pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pf
+b></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><
+/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></u
+sr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on ../resumes/software-developer/software-developer-output-files
+/software-developer.pdf (1 page, 89026 bytes).
+Transcript written on ../resumes/software-developer/software-developer-output-f
+iles/software-developer.log.

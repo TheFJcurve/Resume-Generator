@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 ## ./component-in-LaTeX.sh (resume-name) (component-directory) (component-name-to-create)
 
 ## Required Arguments: All the arguments are required.
@@ -25,28 +23,31 @@
 ## Adds a file to ../resumes/${resume_name}/${resume_name}-components/${resume_name}-${component_name}.tex
 
 achievements() {
-    command_list=()
-
     echo 'How many achievements would you like to list? '
     read count
-    command_list+=(${count})
+    output='\\textbf{Achievement} \n
+
+            \\par\\noindent\\rule{\\textwidth}{0.2pt} \n
+
+            \\begin{itemize} \n'
 
     for ((i=1; i<=${count};i++)); do
         echo 'Details of Achievement' ${i}
         echo ''
         echo 'Competition Name: '
         read competition
-        command_list+=("'${competition}'")
         echo 'Location: '
         read location
-        command_list+=("'${location}'")
         echo 'Year: '
         read year
-        command_list+=(${year})
         echo 'Description: '
         read description
-        command_list+=("'${description}'")
+        output+='\\item {'${competition}' \\\ \n
+                '${location}' \\hfill '${year}' \\\ \n 
+                '${description}'} \n'
     done
+    
+    output+='\\end{itemize}'
 }
 
 certificates() {
@@ -165,26 +166,32 @@ experience() {
 }
 
 heading() {
-    command_list=()
-
     echo 'Name: '
     read name
-    command_list+=("'${name}'")
     echo 'Phone: '
     read phone
-    command_list+=(${phone})
     echo 'Mail: '
     read mail 
-    command_list+=(${mail})
     echo 'LinkedIn Url: '
     read linkedin
-    command_list+=(${linkedin})
     echo 'GitHub Url: '
     read github
-    command_list+=(${github})
     echo 'Personal Portfolio Url: '
     read website
-    command_list+=(${website})
+
+    output='\\begin{center} \n
+                \\textbf{\\Huge \\scshape '${name}'} \\\ \\vspace{3pt}  \n
+                    \\small \n
+                \\faMobile \\hspace{.5pt} \\href{tel:'${phone}'}{'${phone}'} \n
+                    $|$ \n
+                \\faAt \\hspace{.5pt} \\href{mailto:'${mail}'}{'${mail}'} \n
+                    $|$ \n
+                \\faLinkedinSquare \\hspace{.5pt} \\href{'${linkedin}'}{LinkedIn} \n
+                    $|$ \n
+                \\faGithub \\hspace{.5pt} \\href{'${github}'}{GitHub} \n
+                    $|$ \n
+                    \\faGlobe \\hspace{.5pt} \\href{'${website}'}{Portfolio} \n
+            \\end{center}'
 }
 
 interests() {
@@ -233,7 +240,7 @@ languages() {
     output+='\\end{itemize}'
 }
 
-projects () {
+projects() {
     echo 'How many projects would you like to include?'
     read count
 
@@ -291,24 +298,7 @@ skills() {
 }
 
 resume_name=$1
-component_template=$2
-variable_dir=$3
-component_dir=$4
-component_name=$5
-
-template_file=${component_template}/${component_name}.sh
-variable_file=${variable_dir}/${resume_name}-${component_name}.txt
-
-if [ ! -f ${variable_file} ]; then 
-    touch ${variable_file}
-else
-    rm ${variable_file}
-fi 
-
-command_list=()
-function_name=${component_name}
-${function_name}
-
-for command in ${command_list[@]}; do 
-    echo ${command} >> ${variable_file}
-done
+component_dir=$2
+component_name=$3
+${component_name}
+echo -e ${output} > ${component_dir}/${resume_name}-${component_name}.tex
