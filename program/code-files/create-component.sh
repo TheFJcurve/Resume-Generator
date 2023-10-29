@@ -19,8 +19,8 @@
 ## exit 5 -> Invalid directory name provided to input_file function response
 ## exit 6 -> Invalid component name provided to add to file
 
-if [ $# -ne 10 ]; then 
-    echo Please pass EXACTLY 10 arguments >&2 
+if [ $# -ne 11 ]; then 
+    echo Please pass EXACTLY 11 arguments >&2 
     exit 4
 fi
 
@@ -31,11 +31,12 @@ font=$2
 document_type=$3 
 component_template=$4 
 component_dir=$5 
-output_dir=$6
-txt_file=$7 
-tex_file=$8
-header_file=$9 
-component_order=${10}
+variable_dir=$6
+output_dir=$7
+txt_file=$8
+tex_file=$9
+header_file=${10} 
+component_order=${11}
 
 ## Defining Functions
 
@@ -54,7 +55,8 @@ create_file () {
 
     echo Create the ${component_to_add} File
 
-    ./component-in-LaTeX.sh ${resume_name} ${component_dir} ${component_to_add}
+    ./create-variable-for-component.sh ${resume_name} ${component_template} ${variable_dir} ${component_dir} ${component_to_add}
+    ./compile-component.sh ${resume_name} ${component_template} ${variable_dir} ${component_dir} ${component_to_add} < ${variable_dir}/${resume_name}-${component_to_add}.txt
 
     echo ${resume_name}-${component_to_add}.tex >> ${component_order}
 }
@@ -90,7 +92,7 @@ input_file () {
         echo Enter a valid directory
         exit 5
     else
-        scp ../resumes/${response}/${response}-components/${response}-${component_to_add}.tex ${component_dir}/${resume_name}-${component_to_add}.tex
+        scp ../resumes/${response}/${response}-components/${response}-${component_to_add}.tex ${component_dir}/${resume_name}-${component_to_add}.txt
         vim ${component_dir}/${resume_name}-${component_to_add}.tex
 
         echo ${resume_name}-${component_to_add}.tex >> ${component_order}   
@@ -137,7 +139,7 @@ while [ true ]; do
         break
     fi
 
-    if [ ! -f ${component_template}/${component_to_add}.tex ]; then
+    if [ ! -f ${component_template}/${component_to_add}.sh ]; then
         echo Please input a valid file name >&2
         exit 6
     fi

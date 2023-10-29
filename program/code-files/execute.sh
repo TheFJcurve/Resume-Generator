@@ -64,6 +64,9 @@ fi
 component_template=../cv-template
 resume_dir=../resumes/${resume_name}
 component_dir=${resume_dir}/${resume_name}-components
+#
+variable_dir=${resume_dir}/${resume_name}-variables
+#
 output_dir=${resume_dir}/${resume_name}-output-files
 txt_file=resume-template.txt
 tex_file=${output_dir}/${resume_name}.tex
@@ -81,11 +84,15 @@ if [ ${operation} == "create" ]; then
         mkdir ${component_dir}
     fi
 
+    if [ ! -d ${variable_dir} ]; then 
+        mkdir ${variable_dir}
+    fi
+
     if [ ! -d ${output_dir} ]; then 
         mkdir ${output_dir}
     fi
 
-    ./create-component.sh ${resume_name} ${font} ${document_type} ${component_template} ${component_dir} ${output_dir} ${txt_file} ${tex_file} ${header_file} ${component_order}
+    ./create-component.sh ${resume_name} ${font} ${document_type} ${component_template} ${component_dir} ${variable_dir} ${output_dir} ${txt_file} ${tex_file} ${header_file} ${component_order}
 
 ## If update is called, if resume-drectory already exists, then ./update-component.sh is called.
 elif [ ${operation} == "update" ]; then
