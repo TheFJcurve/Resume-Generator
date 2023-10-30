@@ -1,9 +1,20 @@
 #!/bin/bash
 
+## ./reorder-components.sh (component-order)
+
+## Required Arguments: Component Order is a required argument
+
+## Ran by ./update-component.sh when operation is 1. 
+## Changes the Order of Components in the Component Order text file, this changes the order of the resume 
+## when LaTeX is compiled.
+
+
+## Defined in ./execute.sh
 component_order=$1
 
 echo 'Note the numbers before each component, that would be the UNIQUE ID for each component'
 
+## Original File Order in Component Orders file
 original_file_order=""
 
 number=1
@@ -16,6 +27,7 @@ done < ${component_order}
 echo 'Write the order you would like to have IN A LIST WITHOUT COMMAS (example 1 3 4 2)'
 read new_order 
 
+## Will store the new Order that the user wants
 new_file_order=""
 
 
@@ -27,6 +39,7 @@ done
 
 rm ${component_order}
 
+## Writing the new Order on the Component Order text file
 for element in ${new_file_order}; do
     echo ${element} >> ${component_order}
 done
