@@ -32,25 +32,37 @@ tex_file=$7
 header_file=$8
 component_order=$9
 
-## Choosing which file to edit
-echo Which file to edit?
+echo 'Would you like to ReOrder the Components or Edit a Component?'
+echo 'Write 1 for ReOrder and 2 for Edit'
+read operation
 
-for file in ${component_dir}/*; do
-    file_name=$(basename ${file})
-    file_name=${file_name//${resume_name}-/}
-    echo ${file_name//.tex/}
-done
+if [ ${operation} -eq 1 ]; then
+    ./reorder-components.sh ${component_order}
+elif [ ${operation} -eq 2 ]; then
+    ## Choosing which file to edit
+    echo Which file to edit?
 
-read file_name
+    for file in ${component_dir}/*; do
+        file_name=$(basename ${file})
+        file_name=${file_name//${resume_name}-/}
+        echo ${file_name//.tex/}
+    done
 
-file_to_edit=${component_dir}/${resume_name}-${file_name}.tex
+    read file_name
 
-if [ ! -f ${file_to_edit} ]; then 
-    echo You can only update a file that exists >&2
-    exit 11
+    file_to_edit=${component_dir}/${resume_name}-${file_name}.tex
+
+    if [ ! -f ${file_to_edit} ]; then 
+        echo You can only update a file that exists >&2
+        exit 11
+    fi
+
+    vim ${file_to_edit}
+else 
+    echo 'Enter a Valid Operation'
+    exit 12
 fi
 
-vim ${file_to_edit}
 
 ## Calling ./resume-wrapper.sh to process the changes and update the resume pdf file aswell
 ./resume-wrapper.sh ${resume_name} ${font} ${document_type} ${component_dir} ${output_dir} ${txt_file} ${tex_file} ${header_file} ${component_order}

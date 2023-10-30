@@ -1,2 +1,2 @@
 software-developer-heading.tex
-software-developer-projects.tex
+software-developer-skills.tex

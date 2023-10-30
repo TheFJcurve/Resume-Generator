@@ -12,12 +12,12 @@
 ## already worked on. 
 
 ## ERRORS
-## exit 12 -> Exactly 9 commands were not passed to ./delete-component.sh
-## exit 13 -> The component requested to delete doesn't exist in the component-directory
+## exit 13 -> Exactly 9 commands were not passed to ./delete-component.sh
+## exit 14 -> The component requested to delete doesn't exist in the component-directory
 
 if [ $# -ne 9 ]; then 
     echo Please pass EXACTLY 9 arguments >&2 
-    exit 12
+    exit 13
 fi
 
 ## Defining all the necessary variables
@@ -47,7 +47,7 @@ file_to_delete=${component_dir}/${resume_name}-${file_name}.tex
 
 if [ ! -f ${file_to_delete} ]; then 
     echo You can only delete a file that exists >&2
-    exit 13
+    exit 14
 fi
 
 ## Removing file from component-directory
