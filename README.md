@@ -1,3 +1,5 @@
+[![Watch the video](https://img.youtube.com/vi/Y5AyvSvuX9s/hqdefault.jpg)](https://www.youtube.com/watch?v=Y5AyvSvuX9s)
+
 Using LaTeX ahd Bash scripting to make resume creating process much simpler, as it should be. Create multiple resumes with the same or mildly changed components!
 
 Running on bash command line:
